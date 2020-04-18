@@ -8,6 +8,7 @@ public class DestroyByContact : MonoBehaviour
     public GameObject playerExplosion;
     public int scoreValue;
     private GameController gameController;
+    
 
     void Start ()
     {
@@ -36,9 +37,10 @@ public class DestroyByContact : MonoBehaviour
         {
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             gameController.GameOver ();
+
         }
        
-        //gameController.AddScore(scoreValue);
+        gameController.AddScore(scoreValue);
         Destroy(other.gameObject);
         Destroy(gameObject);
     }

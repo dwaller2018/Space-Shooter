@@ -21,10 +21,16 @@ public class GameController : MonoBehaviour
 
     private bool gameOver;
     private bool restart;
-    private int score;
+    public int score;
+
+    public Text livesText;
+    public int lives;
 
     public AudioSource musicSource;
     public AudioClip musicClipTwo;
+    public AudioClip musicClipWin;
+    public AudioClip musicClipLose;
+
     void Start ()
     {
         gameOver = false;
@@ -38,16 +44,24 @@ public class GameController : MonoBehaviour
         StartCoroutine (SpawnWaves());
         musicSource.clip = musicClipTwo;
         musicSource.Play();
+
+        lives = 3;
+        SetLivesText();
     }
 
     void Update ()
     {
         //SceneManager.LoadScene("Sample Scene");
+        if(restart)
         {
+            
+            
             if (Input.GetKeyDown (KeyCode.G))
             {
                 SceneManager.LoadScene("SampleScene");
             }
+
+            
         }
     }
 
@@ -63,6 +77,10 @@ public class GameController : MonoBehaviour
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(hazard, spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(spawnWait);
+            }
+            if (score >= 40)
+            {
+                hazardCount = 15;
             }
             yield return new WaitForSeconds(waveWait);
 
@@ -90,16 +108,54 @@ public class GameController : MonoBehaviour
                 gameOver = true;
                 restart = true;
 
+            musicSource.clip = musicClipTwo;
+            musicSource.Stop();
+
+            musicSource.clip = musicClipWin;
+            musicSource.Play();
+
+
+
+        }
+        else if(lives == 0)
+        {
+            void GameOver()
+            {
+                gameOverText.text = "Game Over!, game created by Dwight Waller.";
+                gameOver = true;
+
+            }
+        }
+    }
+     public void SetLivesText()
+    {
+        livesText.text = "lives: " + lives.ToString();
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "Player")
+        {
+              lives = lives - 1;
+            SetLivesText();
         }
     }
 
-    public void GameOver ()
-    {
-        gameOverText.text = "Game Over!, game created by Dwight Waller.";
-        gameOver = true;
+
+        public void GameOver ()
+         {
+         gameOverText.text = "Game Over!, game created by Dwight Waller.";
+         gameOver = true;
+        musicSource.clip = musicClipTwo;
+        musicSource.Stop();
+
+        musicSource.clip = musicClipLose;
+        musicSource.Play();
+
     }
 
-    void FixedUpdate()
+        void FixedUpdate()
     {
         if (Input.GetKey("escape"))
             Application.Quit();
