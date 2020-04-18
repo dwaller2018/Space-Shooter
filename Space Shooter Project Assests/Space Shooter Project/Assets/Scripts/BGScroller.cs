@@ -21,7 +21,7 @@ public class BGScroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameController.score >= 40)
+        if(gameController.score >= 100)
         {
             scrollSpeed = - 50;
         }

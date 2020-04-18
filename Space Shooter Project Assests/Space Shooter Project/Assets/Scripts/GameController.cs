@@ -23,9 +23,7 @@ public class GameController : MonoBehaviour
     private bool restart;
     public int score;
 
-    public Text livesText;
-    public int lives;
-
+   
     public AudioSource musicSource;
     public AudioClip musicClipTwo;
     public AudioClip musicClipWin;
@@ -45,13 +43,13 @@ public class GameController : MonoBehaviour
         musicSource.clip = musicClipTwo;
         musicSource.Play();
 
-        lives = 3;
-        SetLivesText();
+        //lives = 3;
+       // SetLivesText();
     }
 
     void Update ()
     {
-        //SceneManager.LoadScene("Sample Scene");
+        
         if(restart)
         {
             
@@ -78,7 +76,7 @@ public class GameController : MonoBehaviour
                 Instantiate(hazard, spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(spawnWait);
             }
-            if (score >= 40)
+            if (score >= 100)
             {
                 hazardCount = 15;
             }
@@ -101,7 +99,7 @@ public class GameController : MonoBehaviour
     void UpdateScore ()
     {
         scoreText.text = "Points:" + score;
-        if (score >= 100)
+        if (score >= 200)
         {
 
                 winText.text = "You win!, game created by Dwight Waller.";
@@ -117,31 +115,13 @@ public class GameController : MonoBehaviour
 
 
         }
-        else if(lives == 0)
-        {
-            void GameOver()
-            {
-                gameOverText.text = "Game Over!, game created by Dwight Waller.";
-                gameOver = true;
+        //else if (GameOver())
+       // {
+            //restart = true;
 
-            }
-        }
+        //}
     }
-     public void SetLivesText()
-    {
-        livesText.text = "lives: " + lives.ToString();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-
-        if (other.tag == "Player")
-        {
-              lives = lives - 1;
-            SetLivesText();
-        }
-    }
-
+    
 
         public void GameOver ()
          {

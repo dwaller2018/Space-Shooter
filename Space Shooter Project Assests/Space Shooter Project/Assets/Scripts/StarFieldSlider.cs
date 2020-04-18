@@ -17,7 +17,7 @@ public class StarFieldSlider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.score >= 40)
+        if (gameController.score >= 100)
         {
             var main = ps.main;
             main.simulationSpeed = ChallengeSpeed;
