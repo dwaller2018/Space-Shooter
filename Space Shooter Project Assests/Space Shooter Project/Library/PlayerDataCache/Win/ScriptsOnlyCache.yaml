@@ -648,4 +648,4 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Prefabs/VFX/Scenes/SampleScene.unity
-  playerPath: C:/Users/Dwight/Desktop/New folder/Space Shooter Project.exe
+  playerPath: C:/Users/Dwight/Desktop/Final Project/Space Shooter Project.exe
