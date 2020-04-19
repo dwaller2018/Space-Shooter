@@ -335,7 +335,7 @@ ScriptsOnlyBuild:
     className: PlayerController
   - hash:
       serializedVersion: 2
-      Hash: 301adb8027f251fc04a2e4be37c55956
+      Hash: 467983c99747dbe3535082a13e142647
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameController
